@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,18 +15,23 @@
         android:theme="@style/Theme.WFHJobApp"
         tools:targetApi="31">
         <activity
+            android:name=".JobSeekerProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ResumeTemplateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InterviewTipsActivity"
+            android:exported="false" />
+        <activity
             android:name=".TemplatesActivity"
             android:exported="false" />
         <activity
             android:name=".JobsActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".JobSeekerHomeActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".CreateAccountActivity"
             android:exported="false" />
@@ -36,13 +43,11 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.WFHJobApp">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

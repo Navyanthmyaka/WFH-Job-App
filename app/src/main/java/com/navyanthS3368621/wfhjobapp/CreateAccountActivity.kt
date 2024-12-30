@@ -277,11 +277,19 @@ fun CreateAccountActivityScreen() {
 
                     if (jsfullname.isEmpty()) {
                         Toast.makeText(context, "Full Name is Empty", Toast.LENGTH_SHORT).show()
-                    } else if (jsgraduation.isEmpty()) {
+                    }else if(isValidUsername(jsfullname))
+                    {
+                        Toast.makeText(context, "Full Name is Invalid", Toast.LENGTH_SHORT).show()
+                    }
+                    else if (jsgraduation.isEmpty()) {
                         Toast.makeText(context, "Graduation is Empty", Toast.LENGTH_SHORT).show()
                     } else if (jsemail.isEmpty()) {
                         Toast.makeText(context, "Email is Empty", Toast.LENGTH_SHORT).show()
-                    } else if (jspassword.isEmpty()) {
+                    }else if(isValidUsername(jsemail))
+                    {
+                        Toast.makeText(context, "Email is Invalid", Toast.LENGTH_SHORT).show()
+                    }
+                    else if (jspassword.isEmpty()) {
                         Toast.makeText(context, "Password is Empty", Toast.LENGTH_SHORT).show()
                     }else if(jspassword != jsconfirmpassword)
                     {
@@ -383,6 +391,16 @@ fun CreateAccountActivityScreen() {
     }
 }
 
+fun isValidUsername(username: String): Boolean {
+    val regex = "^[a-zA-Z]*$".toRegex()
+    return !regex.matches(username)
+}
+
+
+fun isValidEmail(email: String): Boolean {
+    val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
+    return !emailRegex.matches(email)
+}
 
 @Preview(showBackground = true)
 @Composable

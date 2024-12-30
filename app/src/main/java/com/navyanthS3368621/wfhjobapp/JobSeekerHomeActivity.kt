@@ -138,7 +138,12 @@ fun JobSeekerHomeActivityScreen(onItemSelected: (itemName: String) -> Unit) {
                         .width(36.dp)
                         .height(36.dp)
                         .clickable {
-                            context.startActivity(Intent(context,JobSeekerProfileActivity::class.java))
+                            context.startActivity(
+                                Intent(
+                                    context,
+                                    JobSeekerProfileActivity::class.java
+                                )
+                            )
                         }
                 )
             }
@@ -272,8 +277,7 @@ fun JSHome(title: String, image: Int, onItemSelected: (itemName: String) -> Unit
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 12.dp)
-            .clickable { onItemSelected(title) },
+            .padding(horizontal = 12.dp),
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
@@ -307,8 +311,11 @@ fun JSHome(title: String, image: Int, onItemSelected: (itemName: String) -> Unit
             Icon(
                 imageVector = Icons.Default.ArrowForward,
                 contentDescription = "Arrow Forward",
+                modifier = Modifier.clickable {
+                    onItemSelected(title)
+                }
 
-                )
+            )
         }
     }
 }

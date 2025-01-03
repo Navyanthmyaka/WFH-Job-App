@@ -10,7 +10,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,8 +21,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -79,31 +76,6 @@ fun JobSeekerHomeActivityScreen(onItemSelected: (itemName: String) -> Unit) {
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        /*Button(
-            onClick = {
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.CenterHorizontally),
-            contentPadding = PaddingValues(vertical = 12.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(id = R.color.CoralRose),
-                contentColor = colorResource(
-                    id = R.color.white
-                )
-            ),
-            shape = RoundedCornerShape(
-                topStart = 0.dp,
-                topEnd = 0.dp,
-                bottomStart = 16.dp,
-                bottomEnd = 16.dp
-            )
-        ) {
-            Text(
-                text = "JobSeeker Home ",
-                style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
-            )
-        }*/
 
         Surface(
             shape = RoundedCornerShape(
@@ -167,11 +139,11 @@ fun JobSeekerHomeActivityScreen(onItemSelected: (itemName: String) -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .clip(RoundedCornerShape(12.dp)) // Curved edges
+                .clip(RoundedCornerShape(12.dp))
                 .border(
                     width = 2.dp,
-                    color = Color.Gray, // Border color
-                    shape = RoundedCornerShape(12.dp) // Match the corner radius
+                    color = Color.Gray,
+                    shape = RoundedCornerShape(12.dp)
                 )
                 .padding(top = 16.dp, bottom = 0.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
@@ -257,13 +229,6 @@ fun JobSeekerHomeActivityScreen(onItemSelected: (itemName: String) -> Unit) {
             }
         }
 
-//        Spacer(modifier = Modifier.height(12.dp))
-//        JSHome("Jobs", R.drawable.job, onItemSelected)
-//        Spacer(modifier = Modifier.height(8.dp))
-//        JSHome("Resume Templates", R.drawable.cv, onItemSelected)
-//        Spacer(modifier = Modifier.height(8.dp))
-//        JSHome("InterView Tips", R.drawable.interview, onItemSelected)
-
         Spacer(modifier = Modifier.weight(1f))
         JSHome("Logout", R.drawable.baseline_logout_36, onItemSelected)
 
@@ -290,7 +255,6 @@ fun JSHome(title: String, image: Int, onItemSelected: (itemName: String) -> Unit
         )
 
         {
-            // Image before the text
             Image(
                 modifier = Modifier.size(36.dp),
                 painter = painterResource(id = image),

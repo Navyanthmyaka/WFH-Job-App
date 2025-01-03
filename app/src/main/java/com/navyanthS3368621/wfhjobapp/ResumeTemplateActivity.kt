@@ -99,8 +99,8 @@ fun ImageScreen() {
                     .fillMaxSize()
                     .clip(RoundedCornerShape(16.dp))
                     .border(2.dp, Color.Gray, RoundedCornerShape(16.dp)),
-                placeholder = R.drawable.baseline_image_24, // Optional placeholder
-                errorImage = R.drawable.baseline_image_24        // Optional error image
+                placeholder = R.drawable.baseline_image_24,
+                errorImage = R.drawable.baseline_image_24
             )
         }
     }
@@ -112,8 +112,8 @@ fun NetworkImage(
     imageUrl: String,
     contentDescription: String?,
     modifier: Modifier = Modifier,
-    placeholder: Int? = null,  // Optional placeholder resource ID
-    errorImage: Int? = null    // Optional error image resource ID
+    placeholder: Int? = null,
+    errorImage: Int? = null
 ) {
     Image(
         painter = rememberAsyncImagePainter(
@@ -123,6 +123,6 @@ fun NetworkImage(
         ),
         contentDescription = contentDescription,
         modifier = modifier,
-        contentScale = ContentScale.FillBounds // Adjust as per your needs
+        contentScale = ContentScale.FillBounds
     )
 }

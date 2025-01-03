@@ -8,7 +8,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,8 +19,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -57,8 +54,8 @@ class JobsActivity : ComponentActivity() {
 fun JobsList() {
     val context = LocalContext.current as Activity
     val availableJobs = getAvailableJobs()
-    val categories = availableJobs.map { it.category }.distinct() // Extract unique categories
-    var selectedCategory by remember { mutableStateOf("All") } // Default to show all jobs
+    val categories = availableJobs.map { it.category }.distinct()
+    var selectedCategory by remember { mutableStateOf("All") }
     val filteredJobs =
         if (selectedCategory == "All") availableJobs else availableJobs.filter { it.category == selectedCategory }
 
@@ -108,7 +105,7 @@ fun JobsList() {
                 .padding(16.dp)
         ) {
 
-            // Chips for filtering categories
+
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -134,7 +131,7 @@ fun JobsList() {
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Job List
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -190,14 +187,13 @@ fun JobCard(job: AvailableJobs) {
                 color = Color.Gray
             )
 
-            // Location Row
 
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_location_on_24), // Replace with your location icon
-                    contentDescription = "Location Icon",
+                    contentDescription = "Map Location",
                     modifier = Modifier
                         .size(16.dp)
                 )
@@ -216,7 +212,7 @@ fun JobCard(job: AvailableJobs) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.salary_ic),
-                    contentDescription = "Location Icon",
+                    contentDescription = "Salary Icon",
                     modifier = Modifier
                         .size(16.dp)
                 )
@@ -235,7 +231,7 @@ fun JobCard(job: AvailableJobs) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.experience_ic),
-                    contentDescription = "Location Icon",
+                    contentDescription = "Experience Icon",
                     modifier = Modifier
                         .size(16.dp)
                 )
@@ -253,7 +249,7 @@ fun JobCard(job: AvailableJobs) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.fulltime),
-                    contentDescription = "Location Icon",
+                    contentDescription = "Time Icon",
                     modifier = Modifier
                         .size(16.dp)
                 )
@@ -264,149 +260,13 @@ fun JobCard(job: AvailableJobs) {
                     color = Color.Black
                 )
 
-//                Text(
-//                    text = "Last Date: ${job.lastDate}",
-//                    style = MaterialTheme.typography.bodySmall,
-//                    color = if (job.applicationStatus == "Open") Color.Blue else Color.Red
-//                )
             }
 
 
-//            Text(text = "Category: ${job.category}", style = MaterialTheme.typography.bodySmall, color = Color.Blue)
         }
     }
 }
 
-
-@Composable
-fun JobsListOld() {
-
-    val availableJobs = getAvailableJobs()
-
-    Column(modifier = Modifier.fillMaxSize()) {
-
-        Button(
-            onClick = {
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.CenterHorizontally),
-            contentPadding = PaddingValues(vertical = 12.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(id = R.color.CoralRose),
-                contentColor = colorResource(
-                    id = R.color.white
-                )
-            ),
-            shape = RoundedCornerShape(
-                topStart = 0.dp,
-                topEnd = 0.dp,
-                bottomStart = 16.dp,
-                bottomEnd = 16.dp
-            )
-        ) {
-            Text(
-                text = "Available Jobs",
-                style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
-            )
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .padding(horizontal = 12.dp)
-        ) {
-
-            items(availableJobs.size) { index ->
-                JobCard(availableJobs[index])
-                Spacer(modifier = Modifier.height(8.dp))
-            }
-        }
-    }
-}
-
-@Composable
-fun JobCardOld(
-    jobItem: AvailableJobs
-) {
-
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp),
-        shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(4.dp)
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(end = 16.dp)
-            ) {
-                Text(
-                    text = jobItem.jobName,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-
-
-                Text(
-                    text = jobItem.companyName,
-                    fontSize = 16.sp,
-                    color = Color.Gray
-                )
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                // Location Row
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.baseline_location_on_24), // Replace with your location icon
-                        contentDescription = "Location Icon",
-                        modifier = Modifier
-                            .size(16.dp)
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = jobItem.place,
-                        fontSize = 14.sp,
-                        color = Color.Gray
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                // Last Date to Apply
-                Text(
-                    text = "Last Date: ${jobItem.lastDate}",
-                    fontSize = 14.sp,
-                    color = Color.Red
-                )
-            }
-
-            // Apply Button
-            Button(
-                onClick = { /* Handle Apply Action */ },
-                modifier = Modifier.align(Alignment.CenterVertically)
-            ) {
-                Text(text = "Apply")
-            }
-        }
-    }
-}
 
 fun getAvailableJobs(): List<AvailableJobs> {
     return listOf(

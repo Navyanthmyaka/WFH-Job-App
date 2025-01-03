@@ -123,15 +123,15 @@ fun CreateAccountActivityScreen() {
                         Spacer(modifier = Modifier.width(6.dp))
 
                         Icon(
-                            imageVector = Icons.Default.AccountCircle, // Replace with desired icon
+                            imageVector = Icons.Default.AccountCircle,
                             contentDescription = "Email Icon"
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Spacer(
                             modifier = Modifier
-                                .width(3.dp) // Width of the line
-                                .height(24.dp) // Adjust height as needed
-                                .background(Color.Gray) // Color of the line
+                                .width(3.dp)
+                                .height(24.dp)
+                                .background(Color.Gray)
                         )
                     }
                 },
@@ -165,9 +165,9 @@ fun CreateAccountActivityScreen() {
                         Spacer(modifier = Modifier.width(6.dp))
                         Spacer(
                             modifier = Modifier
-                                .width(3.dp) // Width of the line
-                                .height(24.dp) // Adjust height as needed
-                                .background(Color.Gray) // Color of the line
+                                .width(3.dp)
+                                .height(24.dp)
+                                .background(Color.Gray)
                         )
                     }
                 },
@@ -192,15 +192,15 @@ fun CreateAccountActivityScreen() {
                         Spacer(modifier = Modifier.width(6.dp))
 
                         Icon(
-                            imageVector = Icons.Default.Email, // Replace with desired icon
+                            imageVector = Icons.Default.Email,
                             contentDescription = "Email Icon"
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Spacer(
                             modifier = Modifier
-                                .width(3.dp) // Width of the line
-                                .height(24.dp) // Adjust height as needed
-                                .background(Color.Gray) // Color of the line
+                                .width(3.dp)
+                                .height(24.dp)
+                                .background(Color.Gray)
                         )
                     }
                 },
@@ -225,15 +225,15 @@ fun CreateAccountActivityScreen() {
                         Spacer(modifier = Modifier.width(6.dp))
 
                         Icon(
-                            imageVector = Icons.Default.Lock, // Replace with desired icon
+                            imageVector = Icons.Default.Lock,
                             contentDescription = "Email Password"
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Spacer(
                             modifier = Modifier
-                                .width(3.dp) // Width of the line
-                                .height(24.dp) // Adjust height as needed
-                                .background(Color.Gray) // Color of the line
+                                .width(3.dp)
+                                .height(24.dp)
+                                .background(Color.Gray)
                         )
                     }
                 },
@@ -256,15 +256,15 @@ fun CreateAccountActivityScreen() {
                         Spacer(modifier = Modifier.width(6.dp))
 
                         Icon(
-                            imageVector = Icons.Default.Lock, // Replace with desired icon
+                            imageVector = Icons.Default.Lock,
                             contentDescription = "Confirm Password"
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Spacer(
                             modifier = Modifier
-                                .width(3.dp) // Width of the line
-                                .height(24.dp) // Adjust height as needed
-                                .background(Color.Gray) // Color of the line
+                                .width(3.dp)
+                                .height(24.dp)
+                                .background(Color.Gray)
                         )
                     }
                 },
@@ -303,10 +303,10 @@ fun CreateAccountActivityScreen() {
                             graduation = jsgraduation
                         )
 
-                        val db = FirebaseDatabase.getInstance()
-                        val ref = db.getReference("JobSeekers")
+                        val firebaseDatabase = FirebaseDatabase.getInstance()
+                        val databaseReference = firebaseDatabase.getReference("JobSeekers")
 
-                        ref.child(jobSeekerData.email.replace(".", ","))
+                        databaseReference.child(jobSeekerData.email.replace(".", ","))
                             .setValue(jobSeekerData)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
@@ -326,7 +326,7 @@ fun CreateAccountActivityScreen() {
                                 } else {
                                     Toast.makeText(
                                         context,
-                                        "User Registration Failed",
+                                        "Failed to open account for you",
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
@@ -334,7 +334,7 @@ fun CreateAccountActivityScreen() {
                             .addOnFailureListener { exception ->
                                 Toast.makeText(
                                     context,
-                                    "User Registration Failed",
+                                    "Failed to open account for you",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -377,7 +377,7 @@ fun CreateAccountActivityScreen() {
                 text = "Login Now",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black, // Blue text color for "Sign Up"
+                color = Color.Black,
                 modifier = Modifier.clickable {
                     context.startActivity(Intent(context, UserLoginActivity::class.java))
                     context.finish()

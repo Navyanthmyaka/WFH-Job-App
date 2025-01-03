@@ -115,15 +115,15 @@ fun UserLoginActivityScreen() {
                         Spacer(modifier = Modifier.width(6.dp))
 
                         Icon(
-                            imageVector = Icons.Default.Email, // Replace with desired icon
+                            imageVector = Icons.Default.Email,
                             contentDescription = "Email Icon"
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Spacer(
                             modifier = Modifier
-                                .width(3.dp) // Width of the line
-                                .height(24.dp) // Adjust height as needed
-                                .background(Color.Gray) // Color of the line
+                                .width(3.dp)
+                                .height(24.dp)
+                                .background(Color.Gray)
                         )
                     }
                 },
@@ -148,15 +148,15 @@ fun UserLoginActivityScreen() {
                         Spacer(modifier = Modifier.width(6.dp))
 
                         Icon(
-                            imageVector = Icons.Default.Lock, // Replace with desired icon
+                            imageVector = Icons.Default.Lock,
                             contentDescription = "Email Password"
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Spacer(
                             modifier = Modifier
-                                .width(3.dp) // Width of the line
-                                .height(24.dp) // Adjust height as needed
-                                .background(Color.Gray) // Color of the line
+                                .width(3.dp)
+                                .height(24.dp)
+                                .background(Color.Gray)
                         )
                     }
                 },
@@ -177,11 +177,11 @@ fun UserLoginActivityScreen() {
                         val userPassword = jspassword.trim()
 
                         val database = FirebaseDatabase.getInstance()
-                        val JobSeekersReference = database.reference
+                        val jobSeekersReference = database.reference
 
-                        val sanitizedEmail = userEmail.replace(".", ",")
 
-                        JobSeekersReference.child("JobSeekers").child(sanitizedEmail).get()
+                        jobSeekersReference.child("JobSeekers").child(userEmail.replace(".", ","))
+                            .get()
                             .addOnSuccessListener { snapshot ->
                                 if (snapshot.exists()) {
                                     val jobSeekerData =
@@ -197,7 +197,10 @@ fun UserLoginActivityScreen() {
                                                 context,
                                                 true
                                             )
-                                            JobSeekerLocalData.saveJobSeekerEmail(context, userEmail)
+                                            JobSeekerLocalData.saveJobSeekerEmail(
+                                                context,
+                                                userEmail
+                                            )
                                             context.startActivity(
                                                 Intent(
                                                     context,
@@ -214,11 +217,15 @@ fun UserLoginActivityScreen() {
                                         }
                                     }
                                 } else {
-                                    Toast.makeText(context, "No User Found", Toast.LENGTH_SHORT)
+                                    Toast.makeText(
+                                        context,
+                                        "Your data is not with us!",
+                                        Toast.LENGTH_SHORT
+                                    )
                                         .show()
                                 }
                             }.addOnFailureListener { exception ->
-                                println("Error retrieving data: ${exception.message}")
+                                println("Seems something is wrong")
                             }
                     }
                 },
@@ -257,7 +264,7 @@ fun UserLoginActivityScreen() {
                 text = "Join Now",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black, // Blue text color for "Sign Up"
+                color = Color.Black,
                 modifier = Modifier.clickable {
                     context.startActivity(Intent(context, CreateAccountActivity::class.java))
                     context.finish()
@@ -280,8 +287,8 @@ fun UserLoginActivityScreenPreview() {
 
 
 data class JobSeekerData(
-    val name: String="",
-    val email: String="",
-    val password: String="",
-    val graduation: String=""
-    )
+    val name: String = "",
+    val email: String = "",
+    val password: String = "",
+    val graduation: String = ""
+)

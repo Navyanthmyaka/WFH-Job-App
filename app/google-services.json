@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "189454093255",
+    "firebase_url": "https://wfhoppurtunities-default-rtdb.firebaseio.com",
     "project_id": "wfhoppurtunities",
     "storage_bucket": "wfhoppurtunities.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:189454093255:android:2f4c5e219a9393e81f67e2",
+        "mobilesdk_app_id": "1:189454093255:android:3fc5e18f6b5a793d1f67e2",
         "android_client_info": {
-          "package_name": "com.navyanthS3368621.wfhjobapp"
+          "package_name": "mobileapplication.navyanthS3368621.wfhjobapp"
         }
       },
       "oauth_client": [],

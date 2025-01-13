@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.navyanthS3368621.wfhjobapp"
+    namespace = "mobileapplication.navyanthS3368621.wfhjobapp"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.navyanthS3368621.wfhjobapp"
+        applicationId = "mobileapplication.navyanthS3368621.wfhjobapp"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -74,5 +74,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation("io.coil-kt:coil-compose:2.3.0")
+
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.maps.android:maps-compose:2.11.0")
 
 }
